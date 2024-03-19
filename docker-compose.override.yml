@@ -2,6 +2,7 @@ services:
 
   # A Windows-based nodejs base image
   nodejs:
+    isolation: ${ISOLATION}
     image: ${REGISTRY}${COMPOSE_PROJECT_NAME}-nodejs:${VERSION:-latest}
     build:
       context: ./docker/build/nodejs
@@ -12,6 +13,7 @@ services:
       replicas: 0
 
   rendering:
+    isolation: ${ISOLATION}
     image: ${REGISTRY}${COMPOSE_PROJECT_NAME}-rendering:${VERSION:-latest}
     build:
       context: ./docker/build/rendering
@@ -46,14 +48,27 @@ services:
   # Mount our SQL data folder and use our custom image with the Headless Services (JSS)
   # module data added. See Dockerfile for details.
   mssql:
+    mem_limit: 4GB
     volumes:
       - type: bind
         source: .\docker\data\sql
         target: c:\data
 
+  solr-init:
+    mem_limit: 4GB
+
   # Mount our Solr data folder and use our retagged Solr image.
   # Some modules (like SXA) also require additions to the Solr image.
   solr:
+    mem_limit: 6GB
+    isolation: ${SOLR_ISOLATION}
+    environment:
+      # JVM memory limit (memory the Solr process can actually use, must be <= mem_limit)
+      SOLR_JAVA_MEM: "-Xms4g -Xmx4g"
+      # Get rid of errors and warnings related to
+      # "JVM cannot use large page memory because it does not have enough privilege to lock pages in memory.",
+      # see https://solr.apache.org/guide/solr/latest/deployment-guide/docker-faq.html
+      SOLR_OPTS: "-XX:-UseLargePages"
     volumes:
       - type: bind
         source: .\docker\data\solr
@@ -63,6 +78,7 @@ services:
   # Folders are mounted below for code deployment and log output. See Dockerfile for details.
   # Configure for a mounted license file instead of using SITECORE_LICENSE.
   cm:
+    mem_limit: 6GB
     image: ${REGISTRY}${COMPOSE_PROJECT_NAME}-xmcloud-cm:${VERSION:-latest}
     build:
       context: ./docker/build/cm
@@ -85,4 +101,5 @@ services:
       ## Development Environment Optimizations
       SITECORE_DEVELOPMENT_PATCHES: DevEnvOn,CustomErrorsOff,DebugOn,DiagnosticsOff,InitMessagesOff
       Sitecore_AppSettings_exmEnabled:define: "no" # remove to turn on EXM
+      WAIT_HOSTS: mssql:14330, solr:8984
     entrypoint: powershell -Command "& C:/tools/entrypoints/iis/XmCloudDevelopment.ps1"
