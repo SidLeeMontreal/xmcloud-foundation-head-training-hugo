@@ -1,0 +1,36 @@
+﻿---
+ID: "979210c6-590c-40b2-9be0-18f9d596bd35"
+Parent: "836d4683-f2c8-45e4-8c8e-85e48b7b408a"
+Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
+Path: /sitecore/content/testsite1/testsite1/Home/Data
+BranchID: "bf982a12-b7d1-46d0-b750-cb3bc8f89988"
+SharedFields:
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{A294864A-F47F-4FCF-AF99-5B2574BF6034}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20240319T171040Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\hvoisine@sidlee.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\hvoisine@sidlee.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b5c4ffc8-880a-4a59-b048-1fbb0dfb3355"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\hvoisine@sidlee.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20240319T171040Z

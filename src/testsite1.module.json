@@ -1,16 +1,21 @@
 {
     "$schema": "../.sitecore/schemas/ModuleFile.schema.json",
-    "namespace": "mysite",
+    "namespace": "testsite1",
     "items": {
         "includes": [
             {
                 "name": "layout",
-                "path": "/sitecore/layout/Placeholder Settings/Project/MySite",
+                "path": "/sitecore/layout/Placeholder Settings/Project/testsite1",
                 "allowedPushOperations": "CreateUpdateAndDelete"
             },
             {
+                "name": "renderings",
+                "path": "/sitecore/layout/Renderings/Project/testsite1",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },            
+            {
                 "name": "templates",
-                "path": "/sitecore/Templates/Project/MySite",
+                "path": "/sitecore/Templates/Project/testsite1",
                 "allowedPushOperations": "CreateUpdateAndDelete"
             },
             {
@@ -20,7 +25,7 @@
             },
             {
                 "name": "media",
-                "path": "/sitecore/Media Library/Project/MySite",
+                "path": "/sitecore/Media Library/Project/testsite1",
                 "allowedPushOperations": "CreateUpdateAndDelete"
             }
         ]

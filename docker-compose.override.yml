@@ -78,7 +78,7 @@ services:
   # Folders are mounted below for code deployment and log output. See Dockerfile for details.
   # Configure for a mounted license file instead of using SITECORE_LICENSE.
   cm:
-    mem_limit: 6GB
+    mem_limit: 8GB
     image: ${REGISTRY}${COMPOSE_PROJECT_NAME}-xmcloud-cm:${VERSION:-latest}
     build:
       context: ./docker/build/cm
